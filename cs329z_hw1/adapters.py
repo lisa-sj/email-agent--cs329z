@@ -61,7 +61,9 @@ def run_priority(email: Email, lm: LMCallable) -> dict:
     * The function does not raise and does not modify ``email``.
     * Live: at least 85% agreement with tests/fixtures/priority_gold.json.
     """
-    raise NotImplementedError
+    from cs329z_hw1.pipelines.priority import classify_priority
+
+    return classify_priority(email, lm)
 
 
 def run_daily_digest(emails: list[Email], lm: LMCallable) -> str:
@@ -79,7 +81,9 @@ def run_daily_digest(emails: list[Email], lm: LMCallable) -> str:
       site that email is about; it contains no term listed for the gold
       ignore emails.
     """
-    raise NotImplementedError
+    from cs329z_hw1.pipelines.digest import daily_digest
+
+    return daily_digest(emails, lm)
 
 
 def run_bm25_build(docs: list[str]) -> Any:
@@ -92,7 +96,9 @@ def run_bm25_build(docs: list[str]) -> Any:
     back to ``run_bm25_search``. The index over the archive must build in
     under 15 seconds.
     """
-    raise NotImplementedError
+    from cs329z_hw1.pipelines.bm25 import build_index
+
+    return build_index(docs)
 
 
 def run_bm25_search(index: Any, query: str, k: int) -> list[tuple[int, float]]:
@@ -113,7 +119,9 @@ def run_bm25_search(index: Any, query: str, k: int) -> list[tuple[int, float]]:
       query on average over the archive, and 2 ms for a term that occurs in
       3 of 200,000 documents.
     """
-    raise NotImplementedError
+    from cs329z_hw1.pipelines.bm25 import search
+
+    return search(index, query, k)
 
 
 def run_email_qa(
@@ -139,7 +147,9 @@ def run_email_qa(
       contain an accepted answer, and the ``support`` of every correct
       answer includes at least one gold email.
     """
-    raise NotImplementedError
+    from cs329z_hw1.pipelines.email_qa import answer_question
+
+    return answer_question(question, search, lm)
 
 
 # ======================================================================
